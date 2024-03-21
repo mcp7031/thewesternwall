@@ -1,0 +1,9 @@
+
+<!-- <a href = "{{ route('posts.show', $post) }}" class="text-xl font-semibold block">{{ $post->title }} </a>
+<span class="text-sm text-gray-600">
+{{ $post->created_at->diffForHumans() }} by {{ $post->user->name }}
+</span> -->
+                <div class="d-flex justify-content-center">
+                    {{ $posts->links() }}
+                </div>
+                            <a href = "{{ $post['text'] }}" class="text-xl font-semibold block">{{ $post['text'] }} </a>

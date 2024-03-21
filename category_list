@@ -1,0 +1,8 @@
+<?php
+return [
+'health' => ['wellness', 'covid-19', 'health', 'gym', 'yoga', 'medication', 'active', 'exercise', 'ihr'],
+'education' => ['education', 'funding', 'gender', 'primary', 'secondary', 'sexualization', 'technology'],
+'medical' => ['medicine', 'doctor', 'nurse', 'tyranny', 'privacy', 'quality', 'suddenly', 'clots', 'heart'],
+'spiritual' => ['spiritual', 'wellness', 'psychological', 'love'],
+'politics' => ['tucker', 'putin']
+];
