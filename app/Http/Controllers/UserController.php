@@ -47,6 +47,15 @@ class UserController extends Controller
             'errors' => $errors
         ]);
     }
+    public function community()
+    {
+        $heading = "Welcome to the Community page";
+        $errors = null;
+        return view('/community', [
+            'heading' => $heading,
+            'errors' => $errors
+        ]);
+    }
 
     /**
      * Display the about page

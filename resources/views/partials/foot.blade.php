@@ -14,7 +14,7 @@
             <!-- Logo -->
             <div><img src="{{ asset('/images/RTVFree.png') }}" alt="FreedomRTV Logo" width="165" height="16"></div>
             <!-- Social links Container -->
-            <div class="flex justify-center space-x-4">
+            <div class="flex justify-between space-x-4">
                 <!-- Link 1 -->
                 <a target="_blank" href="https://facebook.com/RockTheVoteNewZealand"> <img src="{{ asset('/images/icon-facebook.svg') }}" alt="facebook icon" class="h-8" />
                 </a>
@@ -41,25 +41,22 @@
         <!-- List Container -->
         <div class="flex justify-around space-x-32">
             <div class="flex flex-col space-y-3 text-white">
-                <a href="#" class="hover:text-brightRed"
+                <a href="/" class="hover:text-brightRed"
                 >Home</a
                 >
-                <a href="#" class="hover:text-brightRed"
-                >Pricing</a
-                >
-                <a href="#" class="hover:text-brightRed"
+                <a href="/inventory" class="hover:text-brightRed"
                 >Products</a
                 >
-                <a href="#" class="hover:text-brightRed"
+                <a href="/about" class="hover:text-brightRed"
                 >About</a
                 >
             </div>
             <div class="flex flex-col space-y-3 text-white">
-                <a href="#" class="hover:text-brightRed"
-                >Careers</a
-                >
-                <a href="#" class="hover:text-brightRed"
+                <a href="/community" class="hover:text-brightRed"
                 >Community</a
+                >
+                <a href="/aoc" class="hover:text-brightRed"
+                >Categories</a
                 >
                 <a href="#" class="hover:text-brightRed"
                 >Privacy Policy</a

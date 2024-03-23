@@ -13,7 +13,7 @@
         src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.1/dist/cdn.min.js"
     ></script>
 
-        <title>{{ config('app.name', 'FreedomRTV') }}</title>
+        <title>{{ 'TheWesternWall' }}</title>
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>

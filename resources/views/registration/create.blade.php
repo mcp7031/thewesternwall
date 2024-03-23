@@ -9,37 +9,51 @@
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-sm">
         <form class="space-y-6" action="/register" method="POST">
             <div>
-                <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
-                <input id="name" name="name" type="name" autocomplete="name" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                <?php if (isset($errors['name'])) : ?>
-                <p class="text-red-500 text-xs mt-2"><?= $errors['name'] ?></p>
-                <?php endif; ?>
+                <label for="first_name" class="block text-sm font-medium leading-6 text-gray-900">First Name</label>
+                <input id="first_name" name="first_name" type="first_name" autocomplete="first_name"
+                    required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset
+                    ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600
+                    sm:text-sm sm:leading-6">
+                    @if (isset($errors['first_name']))
+                <p class="text-red-500 text-xs mt-2">{{ $errors['first_name'] }}</p>
+                @endif
+                <label for="last_name" class="block text-sm font-medium leading-6 text-gray-900">Last Name</label>
+                <input id="last_name" name="last_name" type="last_name" autocomplete="last_name"
+                    required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset
+                    ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600
+                    sm:text-sm sm:leading-6">
+                    @if (isset($errors['last_name']))
+                <p class="text-red-500 text-xs mt-2">{{ $errors['last_name'] }}</p>
+                @endif
                 <div>
                     <div>
-                        <label for="user" class="block text-sm font-medium leading-6 text-gray-900">User Name</label>
-                        <input id="user" name="user" type="user" autocomplete="user" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                        <?php if (isset($errors['user'])) : ?>
-                        <p class="text-red-500 text-xs mt-2"><?= $errors['user'] ?></p>
-                        <?php endif; ?>
+                        <label for="username" class="block text-sm font-medium leading-6 text-gray-900">User Name</label>
+                        <input id="username" name="username" type="username" autocomplete="username" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            @if (isset($errors['username'])) }}
+                        <p class="text-red-500 text-xs mt-2">{{ $errors['username'] }}</p>
+                        @endif
                         <div>
                             <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
                             <input id="email" name="email" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                            <?php if (isset($errors['email'])) : ?>
-                            <p class="text-red-500 text-xs mt-2"><?= $errors['email'] ?></p>
-                            <?php endif; ?>
+                                @if(isset($errors['email']))
+                            <p class="text-red-500 text-xs mt-2">{{ $errors['email'] }}</p>
+                            @endif
                         </div>
                         <div>
                             <div class="flex items-center justify-between">
                                 <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
                             </div>
                             <input id="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                            <?php if (isset($errors['password'])) : ?>
-                            <p class="text-red-500 text-xs mt-2"><?= $errors['password'] ?></p>
-                            <?php endif; ?>
+                            @if (isset($errors['password']))
+                            <p class="text-red-500 text-xs mt-2">{{ $errors['password'] }}</p>
+                            @endif
                         </div>
 
                         <div>
-                            <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
+                            <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3
+                                py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500
+                                focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2
+                                focus-visible:outline-indigo-600">Register</button>
                         </div>
                     </div>
                 </div>

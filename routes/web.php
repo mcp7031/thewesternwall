@@ -45,6 +45,7 @@ Route::get('/register', [UserController::class, 'subscribe']);
 Route::get('/about', [UserController::class, 'about']);
 Route::get('/aboutRTV', [UserController::class, 'aboutRTV']);
 Route::get('/whatwebelieve', [UserController::class, 'whatwebelieve']);
+Route::get('/community', [UserController::class, 'community']);
 Route::get('/login', [UserController::class, 'create']);
 Route::post('/login', [UserController::class, 'store']);
 //Route::post('/login', [UserController::class, 'store'])->only('guest');
