@@ -31,12 +31,19 @@ class UserController extends Controller
      */
     public function about()
     {
-        $heading = "Welcome to the Western Wall Project";
-        $errors = null;
-        return view('/about', [
-            'heading' => $heading,
-            'errors' => $errors
-        ]);
+        return response()->file(base_path().'/public/docs/TheWesternWallProject.pdf');
+    }
+    public function onfreedom()
+    {
+        return response()->file(base_path().'/public/docs/OnFreedom.pdf');
+    }
+    public function onfamily()
+    {
+        return response()->file(base_path().'/public/docs/Families.pdf');
+    }
+    public function privacy()
+    {
+        return response()->file(base_path().'/public/docs/privacy-policy.pdf');
     }
     public function aboutRTV()
     {
@@ -62,12 +69,7 @@ class UserController extends Controller
      */
     public function whatwebelieve()
     {
-        $heading = "Welcome to the About page";
-        $errors = null;
-        return view('/whatwebelieve', [
-            'heading' => $heading,
-            'errors' => $errors
-        ]);
+        return response()->file(base_path().'/public/docs/WhatWeBelieve.pdf');
     }
 
     /**

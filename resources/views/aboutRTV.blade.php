@@ -5,7 +5,7 @@
             <h1 class="text-xl font-semibold mb-4"> {{ $heading }}</h1>
         <div class="flex-grow border-t border-gray-400 py-2">
             <p>
-                A Grassroots Political Party in New Zealand
+            <h2 class="text-xl font-semi-bold mb-4">A Grassroots Political Party in New Zealand:</h2>
 
                 In the run-up to the 2023 General Elections in New Zealand, a new grassroots political party emerged on the scene. Rock The Vote NZ, a component of the Freedoms NZ umbrella, aims to serve as the voice of the people, standing for a set of principles that emphasize freedom, Kiwi sovereignty, traditional values, and transparent democracy.
             </p>

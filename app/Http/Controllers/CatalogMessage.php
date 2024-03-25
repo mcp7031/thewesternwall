@@ -51,14 +51,7 @@ class CatalogMessage extends BotMsg {
         // check if already processed
         // determine a title, excerpt, slug and category
         // write to file and flag original message
-        $httpClient = new \GuzzleHttp\Client();
-        // $categories = require(base_path() . '/category_list');
-        //		print_r($post);
-
-        // $item = $this->update->getMessage();
-        // $this->caption = $this->update->getCaption();
-        $this->category = $item['forum_topic_created']['name'] ?? '';
-        //    $dt = DateTime::createFromFormat('Y-m-d H:i:s', $post->date);
+        // $httpClient = new \GuzzleHttp\Client();
         $dt = $post->date;
         if($this->caption <> '') $this->caption = $this->nl2html($this->caption);
         // Parse text and URL

@@ -18,12 +18,14 @@
             <div x-show="open">
                 <ul class="bg-white p-4">
                     <li><a class="text-blue-500" href="/">Home</a></li>
-                    <li><a class="text-blue-500" href="/about">About</a></li>
+                    <li><a target="_blank" class="text-blue-500" href="/about">About The Western Wall</a></li>
                     <li><a class="text-blue-500" href="/aboutRTV">About RTV</a></li>
                     <li><a class="text-blue-500" href="#">Our People</a></li>
-                    <li><a class="text-blue-500" href="/whatwebelieve">What We Believe</a></li>
-                    <li><a class="text-blue-500" href="#">Merchandise</a></li>
-                    <li><a class="text-blue-500" href="#">Links</a></li>
+                    <li><a target="_blank" class="text-blue-500" href="/whatwebelieve">What We Believe</a></li>
+                    <li><a target="_blank" class="text-blue-500" href="/onfreedom">On Freedom and Democracy </a></li>
+                    <li><a target="_blank" class="text-blue-500" href="/onfamily">On Family</a></li>
+                    <li><a class="text-blue-500" href="/inventory">Merchandise</a></li>
+                    <li><a class="text-blue-500" href="/community">Community Links</a></li>
                     <li><a class="text-blue-500" href="#">Contact</a></li>
                 </ul>
             </div>

@@ -58,7 +58,7 @@
                 <a href="/aoc" class="hover:text-brightRed"
                 >Categories</a
                 >
-                <a href="#" class="hover:text-brightRed"
+                <a target="_blank" href="/privacy" class="hover:text-brightRed"
                 >Privacy Policy</a
                 >
             </div>
