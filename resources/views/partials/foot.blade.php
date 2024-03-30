@@ -44,8 +44,8 @@
                 <a href="/" class="hover:text-brightRed"
                 >Home</a
                 >
-                <a href="/inventory" class="hover:text-brightRed"
-                >Products</a
+                <a href="/store" class="hover:text-brightRed"
+                >Merchandise</a
                 >
                 <a href="/about" class="hover:text-brightRed"
                 >About</a

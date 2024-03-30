@@ -17,8 +17,12 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
-   //     dd(['In function create', $_SERVER]);
-        return view('auth.login');
+        $errors = [];
+        $heading = "Login";
+        return view('auth.login', [
+            'errors' => $errors,
+            'heading' => $heading
+        ]);
     }
 
     /**

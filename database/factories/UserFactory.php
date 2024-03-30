@@ -18,9 +18,9 @@ class UserFactory extends Factory
 
     public function get_user_image() {
 
-        $IMAGE_PATH = base_path('/public/images/usr');
+        $IMAGE_PATH = base_path('/public/images/usr/');
         $this->username = $this->faker->unique()->word();
-        $this->usr_img = $IMAGE_PATH . $this->username;
+        $this->usr_img = $IMAGE_PATH . $this->username . 'jpg';
     }
 
     /**
@@ -36,6 +36,7 @@ class UserFactory extends Factory
             'first_name' => $this->faker->name(),
             'last_name' => $this->faker->name(),
             'username' => $this->username,
+            'subreg' => $this->faker->randomDigit(),
             'language_code' => 'NZ',
             'is_premium' => 0,
             'added_to_attachment_menu' => 0,

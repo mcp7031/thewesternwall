@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -23,4 +24,14 @@ class ProductVariants extends Model
     public function images(): HasMany {
         return $this->hasMany(Images::class);
     }
+    /* same function in Images works. This does not. Don't know why.
+    public function ProductName() : Attribute {
+        return Attribute::make(
+            get: function () {
+                return $this->product->name;
+            }
+        );
+    }
+    */
+
 }

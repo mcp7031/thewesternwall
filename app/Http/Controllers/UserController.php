@@ -13,7 +13,19 @@ class UserController extends Controller
     public function subscribe(Request $request, Member $member) {
         $heading = "Subscribe to Mailing List";
         $errors = null;
-        return view('/registration/create', [
+        return view('auth.register', [
+            'heading' => $heading,
+            'subreg' => 1, // 0=neither subscribed or registered, 1=subscribed, 2=registered,4=forum
+            'errors' => $errors
+        ]);
+    }
+    /**
+     * Set email registration.
+     */
+    public function register(Request $request, Member $member) {
+        $heading = "Register as Member";
+        $errors = null;
+        return view('registration.create', [
             'heading' => $heading,
             'errors' => $errors
         ]);
@@ -40,6 +52,14 @@ class UserController extends Controller
     public function onfamily()
     {
         return response()->file(base_path().'/public/docs/Families.pdf');
+    }
+    public function onproperty()
+    {
+        return response()->file(base_path().'/public/docs/OnProperty.pdf');
+    }
+    public function onprivatemoney()
+    {
+        return response()->file(base_path().'/public/docs/OnPrivateMoney.pdf');
     }
     public function privacy()
     {

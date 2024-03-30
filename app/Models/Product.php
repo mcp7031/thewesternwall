@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Models\ProductVariants;
-use Attribute;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -20,19 +20,29 @@ class Product extends Model
         'description',
         'price',
     ];
-
+    protected $casts = [
+        'price' => Money::class
+    ];
+    /* price mutator
+    */
+    protected function setPriceAttribute($value) {
+        $value = preg_replace('/[^0-9]/','',$value);
+        $this->attributes['price'] = (int)($value);
+    }
+    /* price accessor
+            */
     protected function price(): Attribute {
         return Attribute::make(
     get: function(int $value) {
-        return new Money($value, new Currency(code: 'NZD'));
+        return new Money($value, new Currency('NZD'));
             }
         );
     }
-    public function productVariant(): HasMany {
+    public function productVariants(): HasMany {
         return $this->hasMany(ProductVariants::class);
     }
 
     public function images(): HasMany {
-        return $this->productVariant()->hasMany(Images::class);
+        return $this->productVariants->hasMany(Images::class);
     }
 }

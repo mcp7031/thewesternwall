@@ -20,7 +20,13 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        $heading = "Member Registration";
+        $errors = [];
+        return view('auth.register', [
+            'heading' => $heading,
+            'subreg' => 2, // 0=neither subscribed or registered, 1=subscribed, 2=registered,4=forum
+            'errors' => $errors
+        ]);
     }
 
     /**
@@ -30,6 +36,7 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+      //  dd($request);
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],

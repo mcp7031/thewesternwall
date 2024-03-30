@@ -6,22 +6,51 @@ use App\Models\Product;
 use App\Models\ProductVariants;
 use App\Models\Images;
 use Illuminate\Support\Facades\DB;
-use Money\Money;
 use Throwable;
 
 // Areas of Concern (Categories)
 
-class InventoryController extends Controller {
+class StoreController extends Controller {
 
     /**
      * Display a listing of the resource.
      */
     public function index() {
-        return view('inventory.index', [
-            'heading' => 'Store Inventory',
-            'product_variants' => ProductVariants::orderBy('product_id')->with('product')->paginate(4)
+        $mergedData=[];
+        $productList=[];
+        $variantList=[];
+        $imageList=[];
+        $products = DB::table('products')->get();
+        foreach ($products as $product) {
+            $product_id = $product->id;
+            $productList[$product_id] = $product;
+            $variants = DB::table('product_variants')->where('product_id', $product->id)->get();
+            foreach ($variants as $variant) {
+                $variant_id = $variant->id;
+                $variantList[$variant_id] = $variant;
+                $images = DB::table('images')->where('product_variants_id', $variant->id)->get();
+                foreach ($images as $image) {
+                    if($image->featured) {
+                        $image_id = $image->id;
+                        $imageList[$image_id] = $image;
+                    }
+                }
+            }
+        }
+        //dd($mergedData);
+        /*
+        return view('store.index', [
+            'heading' => 'Store',
+            'products' => $productList,
+            'variants' => $variantList,
+            'images' => $imageList
         ]);
-        header('location: /inventory');
+*/
+        return view('store.newindex', [
+            'heading' => 'Store',
+            'images' => Images::orderBy('product_variants_id')->paginate(4)
+        ]);
+        header('location: /store');
         die();
     }
 
@@ -135,8 +164,8 @@ class InventoryController extends Controller {
         $id = $_GET['id'];
         $variant = ProductVariants::where('id', $id)->first();
         $images = DB::table('images')->where('product_variants_id', $id)->get();
-     //   $images = $variant->images->all();
-     //   dd($images);
+        //   $images = $variant->images->all();
+        //   dd($images);
         $product_id = $variant->product_id;
         $name = $variant->product->name;
         $description = $variant->product->description;

@@ -27,11 +27,12 @@ Route::get('/', [MessageController::class, 'index']);
 // Route::get('/posts', [MessageController::class, 'show']);
 // Route::resource('posts', TelegramUpdateController::class);
 
-// dd([$_GET, $_SERVER, $_POST]);
+ //dd([$_GET, $_SERVER, $_POST]);
 
 Route::resource('posts', MessageController::class);
 Route::resource('aoc', AocController::class);
 Route::resource('inventory', InventoryController::class);
+Route::resource('store', StoreController::class);
 Route::get('/invedit', [InventoryController::class, 'edit']);
 Route::patch('/invedit', [InventoryController::class, 'store']);
 Route::get('/invariant', [InventoryController::class, 'create']);
@@ -41,21 +42,20 @@ Route::get('/edit', [AocController::class, 'edit']);
 Route::patch('/edit', [AocController::class, 'store']);
 Route::post('/subscribe', [UserController::class, 'store']);
 Route::get('/subscribe', [UserController::class, 'subscribe']);
-Route::get('/register', [UserController::class, 'subscribe']);
+//Route::get('/register', [UserController::class, 'register']);
+//Route::post('/register', [UserController::class, 'store']);
 Route::get('/about', [UserController::class, 'about']);
 Route::get('/onfreedom', [UserController::class, 'onfreedom']);
 Route::get('/onfamily', [UserController::class, 'onfamily']);
+Route::get('/onproperty', [UserController::class, 'onproperty']);
+Route::get('/onprivatemoney', [UserController::class, 'onprivatemoney']);
 Route::get('/privacy', [UserController::class, 'privacy']);
 Route::get('/aboutRTV', [UserController::class, 'aboutRTV']);
 Route::get('/whatwebelieve', [UserController::class, 'whatwebelieve']);
 Route::get('/community', [UserController::class, 'community']);
-Route::get('/login', [UserController::class, 'create']);
-Route::post('/login', [UserController::class, 'store']);
+//Route::get('/login', [UserController::class, 'create']);
+//Route::post('/login', [UserController::class, 'store']);
 //Route::post('/login', [UserController::class, 'store'])->only('guest');
-
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

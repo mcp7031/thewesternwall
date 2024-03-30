@@ -46,7 +46,7 @@ class ImagesFactory extends Factory {
     {
         $IMAGE_PATH = base_path('/public/images/store');
         $fileList = $this->scanFolder($IMAGE_PATH);
-        $a_image = $IMAGE_PATH . $this->faker->randomElement($fileList);
+        $a_image = '/images/store/'. $this->faker->randomElement($fileList);
 
         return [
             'product_variants_id' => ProductVariants::factory(),

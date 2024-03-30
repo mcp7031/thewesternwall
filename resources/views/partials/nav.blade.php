@@ -24,7 +24,9 @@
                     <li><a target="_blank" class="text-blue-500" href="/whatwebelieve">What We Believe</a></li>
                     <li><a target="_blank" class="text-blue-500" href="/onfreedom">On Freedom and Democracy </a></li>
                     <li><a target="_blank" class="text-blue-500" href="/onfamily">On Family</a></li>
-                    <li><a class="text-blue-500" href="/inventory">Merchandise</a></li>
+                    <li><a target="_blank" class="text-blue-500" href="/onproperty">On Property Rights</a></li>
+                    <li><a target="_blank" class="text-blue-500" href="/onprivatemoney">On Private Money</a></li>
+                    <li><a class="text-blue-500" href="/store">Merchandise</a></li>
                     <li><a class="text-blue-500" href="/community">Community Links</a></li>
                     <li><a class="text-blue-500" href="#">Contact</a></li>
                 </ul>
