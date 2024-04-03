@@ -21,6 +21,7 @@
         <x-banner />
 
         <div class="min-h-screen bg-gray-100">
+            <?php  dd(["got here", $_SERVER]); ?>
             @livewire('navigation-menu')
 
             <!-- Page Heading -->

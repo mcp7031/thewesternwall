@@ -93,51 +93,59 @@
                                 @endif
                             </div>
                             <div class="grid grid-cols-4 gap-4 mt-12">
-                                <?php $ndx = 0 ?>
-                                @foreach ($images as $image)
-                                <?php $pathname[$ndx] = $image->path; ?>
+                                <?php $numImages = count($images);$featured=[]; ?>
+                                @foreach ($images as $ndx => $image)
+                                <?php $pathname[$ndx] = $image->path;?>
                                 <div class="bg-white rounded-lg shadow p-4">
                                     <img src="{{ asset($image->path) }}" alt="{{$image->path}}">
-                                    <label
-                                        for="pathname"
-                                        class="block text-sm font-medium text-gray-700"
-                                    >Filename</label>
-                                    <div class="mt-1">
-                                        <textarea
-                                            id="pathname"
-                                            name="pathname"
-                                            rows="1"
-                                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                        >{{ $pathname[$ndx] }}</textarea>
+                                    <x-label for="details">
+                                        <div class="flex items-center">
+                                            <input type="radio" name="featured[]" id="featured[]" value="{{ $image->id }}" @checked($image->featured) />
+                                            <div class="ms-2">
+                                                Featured image
+                                            </div>
+                                        </div>
+                                        <label
+                                                for="pathname"
+                                                class="block text-sm font-medium text-gray-700"
+                                            >Filename</label>
+                                            <input type="hidden" name="image_ids[]" value="{{ $image->id }}" >
+                                        <div class="mt-1">
+                                            <textarea
+                                                id="pathname"
+                                                name="pathname[]"
+                                                rows="1"
+                                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                            >{{ $pathname[$ndx] }}</textarea>
 
-                                        @if(isset($errors['pathname[$ndx]']))
-                                        <p class="text-red-500 text-xs mt-2">{{ $errors['pathname[$ndx]'] }}</p>
-                                        @endif
-                                    </div>
+                                            @if(isset($errors['pathname[$ndx]']))
+                                            <p class="text-red-500 text-xs mt-2">{{ $errors[$pathname[$ndx]] }}</p>
+                                            @endif
+                                    </x-label>
                                 </div>
-                                <?php $ndx++; ?>
-                                @endforeach
                             </div>
-                        </div>
-
-                        <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
-                            <a href="/inventory"
-                                class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                            >
-                                Cancel
-                            </a>
-
-                            <button
-                                type="submit"
-                                class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                            >
-                                Save
-                            </button>
+                            @endforeach
                         </div>
                     </div>
-                </form>
+
+                    <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
+                        <a href="/inventory"
+                            class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        >
+                            Cancel
+                        </a>
+
+                        <button
+                            type="submit"
+                            class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        >
+                            Save
+                        </button>
+                    </div>
             </div>
+            </form>
         </div>
+    </div>
     </div>
 </main>
 

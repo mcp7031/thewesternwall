@@ -16,6 +16,7 @@ class StoreController extends Controller {
      * Display a listing of the resource.
      */
     public function index() {
+        /*
         $mergedData=[];
         $productList=[];
         $variantList=[];
@@ -38,7 +39,6 @@ class StoreController extends Controller {
             }
         }
         //dd($mergedData);
-        /*
         return view('store.index', [
             'heading' => 'Store',
             'products' => $productList,
@@ -46,9 +46,9 @@ class StoreController extends Controller {
             'images' => $imageList
         ]);
 */
-        return view('store.newindex', [
+        return view('store.index', [
             'heading' => 'Store',
-            'images' => Images::orderBy('product_variants_id')->paginate(4)
+            'images' => Product::with('featured_image')->orderBy('product_id')->paginate(4)
         ]);
         header('location: /store');
         die();

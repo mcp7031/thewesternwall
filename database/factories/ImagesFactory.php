@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\ProductVariants;
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -49,7 +49,7 @@ class ImagesFactory extends Factory {
         $a_image = '/images/store/'. $this->faker->randomElement($fileList);
 
         return [
-            'product_variants_id' => ProductVariants::factory(),
+            'product_id' => Product::factory(),
             'next_image' => 0,
             'featured' => false,
             'path' => $a_image

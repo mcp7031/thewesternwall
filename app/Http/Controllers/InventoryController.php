@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\DB;
 use Money\Money;
 use Throwable;
 
-// Areas of Concern (Categories)
 
 class InventoryController extends Controller {
 
@@ -105,9 +104,9 @@ class InventoryController extends Controller {
         $id = $_GET['id'];
         //    'product_variants' => ProductVariants::orderBy('product_id')->with('product')->paginate(4)
         $variant = ProductVariants::where('id', $id)->first();
-        $images = DB::table('images')->where('product_variants_id', $id)->get();
-        //   dd($variant);
         $product_id = $variant->product_id;
+        $images = DB::table('images')->where('product_id', $product_id)->get();
+        //   dd($variant);
         $name = $variant->product->name;
         $prod_desc = $variant->product->description;
         $attribute = $variant->attribute;
@@ -134,10 +133,10 @@ class InventoryController extends Controller {
         $errors = [];
         $id = $_GET['id'];
         $variant = ProductVariants::where('id', $id)->first();
-        $images = DB::table('images')->where('product_variants_id', $id)->get();
-     //   $images = $variant->images->all();
-     //   dd($images);
         $product_id = $variant->product_id;
+        $images = DB::table('images')->where('product_id', $product_id)->get();
+        //   $images = $variant->images->all();
+        //   dd($images);
         $name = $variant->product->name;
         $description = $variant->product->description;
         $attribute = $variant->attribute;
@@ -169,6 +168,7 @@ class InventoryController extends Controller {
                 'errors' => $errors
             ]);
         }
+//        dd($_POST);
         $id = $_POST['id'] ?? '';   // will not be defined for new Product
         $product_variant_id = $_POST['product_variant_id'] ?? '';
         if ($_SERVER['REQUEST_URI'] == '/invariant') {
@@ -192,6 +192,18 @@ class InventoryController extends Controller {
                     'quantity' => $_POST['quantity']
                 ]);
         }
+        $image_ids = $_POST['image_ids'] ?? "";
+        $pathnames = $_POST['pathname'];
+        $featured = $_POST['featured'] ?? "";
+        for ($ndx=0; $ndx<count($image_ids); $ndx++) {
+            if (isset($featured[0]) && $image_ids[$ndx] == $featured[0]) $image_id_featured = 1; else $image_id_featured = 0;
+            Images::updateOrCreate([
+                'id' => $image_ids[$ndx] ],[
+                    'path' => $pathnames[$ndx] ??  "",
+                    'featured' => $image_id_featured
+                ]);
+        }
+
         /*
         return response()->json([
             'message' => 'Product and Variant records create/updated successfully.',

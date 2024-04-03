@@ -487,6 +487,7 @@ CREATE TABLE `users` (
   `first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `subreg` tinyint NOT NULL,
   `language_code` char(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `is_premium` tinyint NOT NULL,
   `added_to_attachment_menu` tinyint NOT NULL,

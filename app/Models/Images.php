@@ -12,11 +12,13 @@ class Images extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'path',
+        'featured'
+    ];
+
     public function product():BelongsTo {
-        return $this->productVariants->product();
-    }
-    public function productVariants():BelongsTo {
-        return $this->belongsTo(ProductVariants::class);
+        return $this->product();
     }
     public function ProductName() : Attribute {
         return Attribute::make(

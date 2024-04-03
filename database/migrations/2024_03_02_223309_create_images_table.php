@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\ProductVariants;
+use App\Models\Product;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,8 +14,8 @@ return new class extends Migration
         {
             Schema::create('images', function (Blueprint $table) {
                 $table->id();
-                $table->foreignIdFor(ProductVariants::class)->constrained()->restrictOnDelete();
-                $table->tinyInteger('next_image')->default(0);
+                $table->foreignIdFor(Product::class)->constrained()->restrictOnDelete();
+                $table->tinyInteger('next_image')->default(0);  //not currently used, could be a sort field
                 $table->boolean('featured')->default(false);
                 $table->string('path');
                 $table->timestamps();

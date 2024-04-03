@@ -17,39 +17,21 @@
             @endforeach
         </div>
         <div class="px-4 py-8 flex space-x-4">
-            <a href="/inventory">
+            <a href="/store">
                 <button
                     type="submit"
                     class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                     Cancel
                 </button>
             </a>
-            <a href="/invedit?id={{ $id }}">
-                @csrf
+            <a href="#">
                 <button
                     type="submit"
                     class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 >
-                    Update
+                    Add to Cart
                 </button>
             </a>
-            <a href="/invariant?id={{ $product_id }}">
-                <button
-                    type="submit"
-                    class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                    Create
-                </button>
-            </a>
-            <form class method="POST">
-                @csrf
-                <input type="hidden" name="_method" value="DELETE">
-                <input type="hidden" name="id" value="{{ $id }}">
-                <button
-                    class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                >
-                    Delete
-                </button>
-            </form>
         </div>
     </div>
 </main>

@@ -8,6 +8,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\AocController;
 use App\Http\Controllers\InventoryController;
+use App\Livewire\Product;
+use App\Livewire\Storefront;
 use Inertia\Inertia;
 
 /*
@@ -32,8 +34,10 @@ Route::get('/', [MessageController::class, 'index']);
 Route::resource('posts', MessageController::class);
 Route::resource('aoc', AocController::class);
 Route::resource('inventory', InventoryController::class);
-Route::resource('store', StoreController::class);
+//Route::resource('store', StoreController::class);
 Route::get('/invedit', [InventoryController::class, 'edit']);
+Route::get('/product/{product_id}', Product::class)->name('product');
+Route::get('/store', Storefront::class)->name('home');
 Route::patch('/invedit', [InventoryController::class, 'store']);
 Route::get('/invariant', [InventoryController::class, 'create']);
 Route::post('/invariant', [InventoryController::class, 'store']);

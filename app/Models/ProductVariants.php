@@ -22,9 +22,8 @@ class ProductVariants extends Model
         return $this->belongsTo(Product::class);
     }
     public function images(): HasMany {
-        return $this->hasMany(Images::class);
+        return $this->product->hasMany(Images::class);
     }
-    /* same function in Images works. This does not. Don't know why.
     public function ProductName() : Attribute {
         return Attribute::make(
             get: function () {
@@ -32,6 +31,5 @@ class ProductVariants extends Model
             }
         );
     }
-    */
 
 }

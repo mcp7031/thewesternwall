@@ -40,10 +40,10 @@ class DatabaseSeeder extends Seeder
         DB::table('images')->truncate();
         Product::factory()->count(4)->has(
             ProductVariants::factory()->count(2)->has(
-                Images::factory()->count(2))
-            ->afterCreating(function (ProductVariants $product_variant) {
-                $product_variant->images()->first()->update(['featured' => true]);
-            }))
+                Images::factory()->count(4)))
+            ->afterCreating(function (Product $product) {
+                $product->images()->first()->update(['featured' => true]);
+            })
         ->create();
 
         DB::table('carts')->truncate();
