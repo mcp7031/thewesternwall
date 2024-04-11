@@ -7,6 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use Money\Currencies\ISOCurrencies;
 use Money\Formatter\IntlMoneyFormatter;
 use Money\Money;
+use App\Patterns\Observer\CartListingObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,7 +16,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
     }
 
     /**

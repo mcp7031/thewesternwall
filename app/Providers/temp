@@ -1,0 +1,4 @@
+        $this->app->bind('App\Patterns\Observers\Observer', function ($value) {
+            return new CartListingObserver($value);
+        });
+

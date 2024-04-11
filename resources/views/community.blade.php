@@ -98,6 +98,21 @@
                     <img src="{{ asset('/images/Wake_Up_NZ.webp') }}" alt="WakeUp" width="165" height="165">
                 </a>
             </div>
+            <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 p-4">
+                <a href="http://whenpushcomestoshove.co.uk">
+                    <img src="{{ asset('/images/when.jpeg') }}" alt="When" width="165" height="165">
+                </a>
+            </div>
+            <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 p-4">
+                <a href="https://theconsciousresistance.com/">
+                    <img src="{{ asset('/images/conscious.png') }}" alt="When" width="165" height="165">
+                </a>
+            </div>
+            <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 p-4">
+                <a href="https://worldcouncilforhealth.org/">
+                    <img src="{{ asset('/images/wch.svg') }}" alt="When" width="165" height="165">
+                </a>
+            </div>
         </div>
     </div>
 </main>

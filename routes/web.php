@@ -10,6 +10,7 @@ use App\Http\Controllers\AocController;
 use App\Http\Controllers\InventoryController;
 use App\Livewire\Product;
 use App\Livewire\Storefront;
+use App\Livewire\Cart;
 use Inertia\Inertia;
 
 /*
@@ -38,6 +39,7 @@ Route::resource('inventory', InventoryController::class);
 Route::get('/invedit', [InventoryController::class, 'edit']);
 Route::get('/product/{product_id}', Product::class)->name('product');
 Route::get('/store', Storefront::class)->name('home');
+Route::get('/showcart', Cart::class)->name('home');
 Route::patch('/invedit', [InventoryController::class, 'store']);
 Route::get('/invariant', [InventoryController::class, 'create']);
 Route::post('/invariant', [InventoryController::class, 'store']);
@@ -60,11 +62,11 @@ Route::get('/community', [UserController::class, 'community']);
 //Route::get('/login', [UserController::class, 'create']);
 //Route::post('/login', [UserController::class, 'store']);
 //Route::post('/login', [UserController::class, 'store'])->only('guest');
-
+/*
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
+*/
 require __DIR__.'/auth.php';
