@@ -18,15 +18,19 @@ class Carts extends Model implements \SplSubject {
         'user_id',
         'session_id'
     ];
-    protected $cart;
-    protected $items;
+    public $cart;
+    public $items;
+    public $variant_id;
     private $observers;
 
     public function __construct() {
         $this->items = new Collection();
         $this->observers = new \SplObjectStorage();
+        $this->observers->attach(new PriceUpdate());
+        $this->observers->attach(new InventoryUpdate());
     }
     public function addItem($variant_id) {
+        $this->variant_id = $variant_id;
         if (auth()->guest()) {
             $this->cart = Carts::firstOrCreate([
                 'session_id' => session()->getId()
@@ -47,8 +51,6 @@ class Carts extends Model implements \SplSubject {
                 'quantity' => 1
             ]);
         $this->items->push($item);
-        $this->observers->attach(new PriceUpdate());
-        $this->observers->attach(new InventoryUpdate());
         $this->notify();
         //dd($this);
     }
