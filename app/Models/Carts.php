@@ -72,6 +72,10 @@ class Carts extends Model implements \SplSubject {
         // delete item from the Cart
     }
 
+    public function hasItems() : bool {
+        if ($this->cartItem->count() > 0) return true;
+        return false;
+    }
     public function cartItem(): HasMany {
         return $this->hasMany(CartItems::class);
     }

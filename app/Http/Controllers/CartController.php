@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\Webshop\AddProductVariantToCart;
-use App\Models\Product;
+use App\Models\CartItems;
 use App\Models\ProductVariants;
 use App\Models\Images;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+use Money\Money;
+use Money\Currency;
+use Money\MoneyParser;
 use Throwable;
 
-// Areas of Concern (Categories)
-
-class StoreController extends Controller {
+class CartController extends Controller {
 
     public $product_id;
     public $product;
@@ -22,49 +23,48 @@ class StoreController extends Controller {
      * Display a listing of the resource.
      */
     public function index() {
-        /*
-        $mergedData=[];
-        $productList=[];
-        $variantList=[];
-        $imageList=[];
-        $products = DB::table('products')->get();
-        foreach ($products as $product) {
-            $product_id = $product->id;
-            $productList[$product_id] = $product;
-            $variants = DB::table('product_variants')->where('product_id', $product->id)->get();
-            foreach ($variants as $variant) {
-                $variant_id = $variant->id;
-                $variantList[$variant_id] = $variant;
-                $images = DB::table('images')->where('product_variants_id', $variant->id)->get();
-                foreach ($images as $image) {
-                    if($image->featured) {
-                        $image_id = $image->id;
-                        $imageList[$image_id] = $image;
-                    }
-                }
-            }
+        $totalp = 0;
+        if (auth()->check()) {
+            $user = auth()->user();
+            $cart = DB::table('carts')->where('user_id',$user->id)->first();
+        } else {
+            $sessionId = Session::getId();
+            $cart = DB::table('carts')->where('session_id', $sessionId)->first();
         }
-        //dd($mergedData);
-        return view('store.index', [
-            'heading' => 'Store',
-            'products' => $productList,
-            'variants' => $variantList,
-            'images' => $imageList
-        ]);
-*/
-        return view('store.index', [
-            'heading' => 'Store',
-            'products' => Product::orderBy('name')->paginate(2)
-        ]);
+        if (isset($cart)) {
+            //    $items = DB::table('cart_items')->where('carts_id', $cart->id)->get();
+            $items = CartItems::where('carts_id', $cart->id)->get();
+            $paginatedItems = CartItems::where('carts_id', $cart->id)->paginate(3);
+           //    dd([$sessionId, $cart, $items]);
+            foreach ($items as $item) {
+                $variant = \App\Models\ProductVariants::findOrFail($item->product_variants_id);
+                $product = \App\Models\Product::findOrFail($variant->product_id);
+                $totalp += $item->quantity * $product->price->getAmount();
+            }
+            foreach ($paginatedItems as $item) {
+                $variant = \App\Models\ProductVariants::findOrFail($item->product_variants_id);
+                $product = \App\Models\Product::findOrFail($variant->product_id);
+                $this->variants[] = $variant;
+                $this->product[] = $product;
+            }
+            //dd([$items, $this->variants]);
+            return view('cart.index', [
+                'heading' => 'Cart',
+                'carts' => $cart,
+                'items' => $paginatedItems,
+                'variants' => $this->variants,
+                'totalp' => new Money($totalp, new currency('NZD'))
+            ]);
+        }
         header('location: /store');
         die();
     }
 
     public function show() {
         //    parse_str($_SERVER['REQUEST_URI'],$result);
-        $result = explode('?',$_SERVER['REQUEST_URI']);
+        $result = explode('/',$_SERVER['REQUEST_URI']);
         $this->product_id = end($result);
-   //     dd([$result, $_SERVER]);
+        //dd([$result, $_SERVER]);
         $this->product = \App\Models\Product::findOrFail($this->product_id);
         $this->variants = DB::table('product_variants')->where('product_id', $this->product_id)->get();
         $this->images = DB::table('images')->where('product_id', $this->product_id)->get();
@@ -77,24 +77,6 @@ class StoreController extends Controller {
         die();
     }
 
-    public function delProduct($product): bool {
-        try {
-            $product->delete();
-        } catch (Throwable $e) {
-            report("Product not deleted: ".$product . $e);
-            return false;
-        }
-        return true;
-    }
-    public function delVariant($variant): bool {
-        try {
-            $variant->delete();
-        } catch (Throwable $e) {
-            report("Product Variant not deleted: ".$variant .$e);
-            return false;
-        }
-        return true;
-    }
 
     public function destroy() {
 
@@ -125,42 +107,6 @@ class StoreController extends Controller {
 */
         header('location: /inventory');
         die();
-    }
-
-    public function create(AddProductVariantToCart $cart) {
-
-        $errors = [];
-        $this->variant_id = $_POST['id'];
-        $cart->add($this->variant_id);
-   //     $this->banner("Your product has been added to your cart");
-   //     dd(["in create", $cart, $_POST]);
-        //    'product_variants' => ProductVariants::orderBy('product_id')->with('product')->paginate(4)
-        /*
-        $variant = ProductVariants::where('id', $id)->first();
-        $images = DB::table('images')->where('product_variants_id', $id)->get();
-        //   dd($variant);
-        $product_id = $variant->product_id;
-        $name = $variant->product->name;
-        $prod_desc = $variant->product->description;
-        $attribute = $variant->attribute;
-        $price = $variant->product->price;
-        $quantity = $variant->quantity;
-
-        return view("inventory.show", [
-            'heading' => 'Show Product',
-            'id' => $id,
-            'product_id' => $product_id,
-            'errors' => $errors,
-            'name' => $name,
-            'prod_desc' => $prod_desc,
-            'attribute' => $attribute,
-            'price' => $price,
-            'quantity' => $quantity,
-            'images' => $images
-        ]);
-        header('location: /inventory');
-        die();
-*/
     }
 
     public function edit() {

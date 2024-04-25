@@ -113,6 +113,11 @@
                     <img src="{{ asset('/images/wch.svg') }}" alt="When" width="165" height="165">
                 </a>
             </div>
+            <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 p-4">
+                <a href="https://daragrennie.com/">
+                    <img src="{{ asset('/images/Light-Love-Laws-Lies.png') }}" alt="When" width="165" height="165">
+                </a>
+            </div>
         </div>
     </div>
 </main>

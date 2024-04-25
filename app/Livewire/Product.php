@@ -17,10 +17,11 @@ class Product extends Component
     ];
 
     public function addToCart(AddProductVariantToCart $cart) {
-        //   $this->validate();
-        variant_id: $this->variant_id;
+        // $this->validate();
+        dd(["in addtoCart", $cart]);
         $cart->add($this->variant_id);
-        //dd(["in function addToCart",$this,$_SERVER]);
+        $this->banner("Your product has been added to your cart");
+        dd(["in function addToCart",$this,$_SERVER]);
     }
     public function mount($product_id) {
         $this->variants = DB::table('product_variants')->where('product_id', $product_id)->get();
@@ -32,7 +33,7 @@ class Product extends Component
     }
     public function render() {
         return view("livewire.product");
-        header('location: /store');
-        die();
+     //   header('location: /store');
+     //   die();
     }
 }

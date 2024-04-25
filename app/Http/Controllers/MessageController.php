@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use App\Models\Message;
 use App\CustomClasses\CatalogMessage;
+use App\Models\Carts;
 use Longman\TelegramBot\Entities\Message as BotMsg;
 use Core;
 use Longman\TelegramBot\Telegram;
@@ -26,12 +27,14 @@ class MessageController extends Controller
     protected $chats;
     protected $messages;
     public $aocKeyMap;
+    public $cart;
 
 
     public function __construct() {
         $this->db = Core\App::resolve('Core\Database');
         $this->catalogMessage = new CatalogMessage();
         $this->aocKeyMap = $this->catalogMessage->aocKeyMap;
+        $this->cart = new Carts();
     }
 
     protected function setUp() : ServerResponse {
@@ -80,7 +83,9 @@ class MessageController extends Controller
         }
         // $posts = $this->db->query('select * from `bot_message` ORDER BY `date` DESC')->get();
         // dd([$posts, is_object($posts)]);
-        return view('index');
+        return view('index', [
+            'cart' => $this->cart
+        ]);
             /*, [
             'heading' => 'Telegram Posts',
             'aocList' => $this->aocKeyMap,
@@ -88,11 +93,12 @@ class MessageController extends Controller
             ]);
             */
     }
-
+/*
     public function show(Message $post) {
         return view('show', [
             'post' => $post,
             'comments' => $post->comments()->with('user')->paginate(10),
         ]);
     }
+    */
 }

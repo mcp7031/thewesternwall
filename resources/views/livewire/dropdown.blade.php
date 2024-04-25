@@ -13,6 +13,5 @@
         <option value="9">Other</option>
     </select>
     </span>
-    <div>Cat: @json($category)</div>
     @include('partials.displaylist')
 </div>
